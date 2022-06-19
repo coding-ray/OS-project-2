@@ -1,4 +1,3 @@
-# OS-project-2
 **runninng info :**
 + compile : `make` 
 + remove old file : `make remove`
