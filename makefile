@@ -1,5 +1,3 @@
-#os final group ? makefile
-
 all: client server
 
 client: client.c

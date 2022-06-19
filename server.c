@@ -1,39 +1,16 @@
-/*compile this file : $gcc server.c -std=c99 -lpthread -Wall -o server*/
-/*run this file : ./server [port]
-    if no specified port -> default port is 6666*/
+#include "server.h"
+
 #include <arpa/inet.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <netdb.h>
-#include <netinet/in.h>
-#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/select.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <unistd.h>
-
-#include "CHATHEADER.h"
-
-void startChat(int socketFd);
-void buildMessage(char *result, char *name, char *msg);
-void bindSocket(struct sockaddr_in *serverAddr, int socketFd, long port);
-void removeClient(Chat_datastruct *data, int clientSocketFd);
-
-void *newClientHandler(void *data);
-void *clientHandler(void *chv);
-void *messageHandler(void *data);
-
-void queueDestroy(chat_queue *q);
-chat_queue *queueInit(void);
-void queuePush(chat_queue *q, char *msg);
-char *queuePop(chat_queue *q);
 
 int main(int argc, char *argv[]) {
   struct sockaddr_in serverAddr;
-  // setting default port 6666
+  // Set default port 6666
   long port = 6666;
   int socketFd;
 
